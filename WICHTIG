@@ -1,0 +1,37 @@
+Backend Methods That Can Be Deleted Without Affecting Frontend
+After examining your backend code structure and comparing it with your frontend implementation, here are the methods that can be safely deleted without impacting your frontend functionality:
+
+Authentication Controller/Service
+refreshToken - Your frontend has code for this but never actually calls it
+validateToken - Not used by frontend which relies on server responses
+revokeToken - Frontend only uses simple logout without explicit token revocation
+User Controller/Service
+
+searchUsers - Frontend only uses direct ID lookup and full listing
+updateUserRole - Frontend only checks if a user is ADMIN or not
+getUsersByStatus - No filtering by status in frontend
+deactivateUser - No user deactivation functionality in frontend
+getUserStatistics - No user statistics displayed in frontend
+Item Controller/Service
+
+searchItemsByMultipleParams - Frontend only filters by location
+getItemsByCategory - Frontend loads all items and filters client-side
+getItemsByBrand - Not used in frontend
+getItemVersionHistory - No history tracking in frontend
+getItemStatistics - No item statistics in frontend
+bulkUpdateItems - Frontend updates items individually
+Rental Controller/Service
+
+searchRentals - Frontend uses simple active/history lists
+getRentalStatistics - No rental statistics in frontend
+bulkProcessRentals - Frontend processes rentals individually
+cancelRental - No cancel functionality in frontend
+updateRentalNotes - No notes functionality in frontend
+Review Controller/Service
+
+updateReview - Frontend only creates reviews, never updates them
+deleteReview - No review deletion in frontend
+getReviewsByRating - Frontend displays all reviews without filtering
+getUserReviews - Frontend only gets reviews by item
+checkUserReviewEligibility - Frontend uses simpler hasUserReviewedRental
+These methods can be safely removed as they're not utilized by your current frontend implementation. This will make your backend more maintainable and focused on the actual requirements of your application.
